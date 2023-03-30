@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/mitsuoka0423/netlify-functions-template.ts#readme",
   "dependencies": {
-    "@netlify/functions": "^1.4.0"
+    "@netlify/functions": "^1.4.0",
+    "axios": "^1.3.4",
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "netlify-cli": "^13.0.1",

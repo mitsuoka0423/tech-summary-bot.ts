@@ -15,7 +15,7 @@ npm run dev
 ```
 
 ```bash
-$ curl http://localhost:8888/.netlify/functions/hello
+$ curl http://localhost:8888/netlify/functions/hello.
 
 {"message":"Hello World"}
 ```
