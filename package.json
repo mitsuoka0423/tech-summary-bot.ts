@@ -5,7 +5,8 @@
   "main": "./netlify/functions/hello/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "netlify dev"
+    "dev": "netlify dev",
+    "exec": "ts-node ./netlify/functions/notify/main.ts"
   },
   "repository": {
     "type": "git",
@@ -21,10 +22,12 @@
   "dependencies": {
     "@netlify/functions": "^1.4.0",
     "axios": "^1.3.4",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "openai": "^3.2.1"
   },
   "devDependencies": {
     "netlify-cli": "^13.0.1",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
   }
 }
