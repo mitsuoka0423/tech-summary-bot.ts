@@ -1,11 +1,11 @@
 import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
-import { main } from "../../../src/application/service/qiitaSummary";
+import { execute } from "../../../src/application/service/qiitaSummary";
 
 const handler: Handler = async (
   event: HandlerEvent,
   context: HandlerContext
 ) => {
-  await main();  
+  await execute();  
 
   return {
     statusCode: 200,
