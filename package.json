@@ -2,11 +2,11 @@
   "name": "netlify-functions-template.ts",
   "version": "1.0.0",
   "description": "",
-  "main": "./netlify/functions/hello/index.js",
+  "main": "./client/driver/index.ts",
   "scripts": {
     "build": "tsc",
     "dev": "netlify dev",
-    "exec": "ts-node ./netlify/functions/notify/main.ts"
+    "exec": "ts-node ./src/client/driver/index.ts"
   },
   "repository": {
     "type": "git",

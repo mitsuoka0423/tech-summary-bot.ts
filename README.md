@@ -31,3 +31,65 @@ $ curl https://{site_name}.netlify.app/.netlify/functions/hello
 
 {"message":"Hello World"}
 ```
+
+## Architecture
+
+```mermaid
+graph LR
+  subgraph main
+    client
+    application
+    persistence
+  end
+  subgraph adaptor
+    client-adaptor
+    persistence-adaptor
+  end
+
+  client -.-> application -.-> persistence
+  client --> client-adaptor
+  application --> client-adaptor
+  application --> persistence-adaptor
+  persistence --> persistence-adaptor
+```
+
+```mermaid
+graph
+  subgraph client
+    Web
+    Cron
+  end
+  subgraph application
+    subgraph adaptor
+      subgraph client-adaptor
+        HttpAdapter
+        CronAdapter
+      end
+      subgraph persistence-adaptor
+        DbAdapter
+        ApiAdapter
+      end
+    end
+    subgraph Service
+      HogeService
+      subgraph Domain
+        HogeDomain
+      end
+    end
+  end
+  subgraph persistence
+    DB
+    API
+  end
+
+  Web --> HttpAdapter
+  Cron --> CronAdapter
+
+  DB --> DbAdapter
+  API --> ApiAdapter
+
+  HogeService --> HttpAdapter 
+  HogeService --> DbAdapter
+  HogeService --> ApiAdapter
+  HogeService --> HogeDomain
+```

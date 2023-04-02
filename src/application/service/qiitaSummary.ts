@@ -1,7 +1,7 @@
-import { getPrompt, postChatCompletion } from "./api/chatgpt";
-import { notify } from "./api/discord";
-import { getItems } from "./api/qiita";
-import { ArticleSummary } from "./model/domain/articleSummary";
+import { getPrompt, postChatCompletion } from "../adaptor/persistence-adaptor/chatgpt";
+import { notify } from "../adaptor/persistence-adaptor/discord";
+import { getItems } from "../adaptor/persistence-adaptor/qiita";
+import { ArticleSummary } from "../domain/ArticleSummary";
 
 import { config } from "dotenv";
 config();
@@ -9,7 +9,7 @@ config();
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || "";
 const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || "";
 
-export const main = async () => {
+export const execute = async () => {
   const items = await getItems({ query: "tag:javascript", per_page: 5 });
 
   const summaries: ArticleSummary[] = [];
@@ -29,5 +29,3 @@ export const main = async () => {
     await notify({ webhookUrl: DISCORD_WEBHOOK_URL, content: message });
   }
 };
-
-main();
