@@ -6,6 +6,6 @@ config();
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || "";
 const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || "";
 
-adaptor({ DISCORD_WEBHOOK_URL, OPEN_AI_API_KEY }).then(() =>
-  console.log("finished")
-);
+adaptor({ DISCORD_WEBHOOK_URL, OPEN_AI_API_KEY }).then(() => {
+	console.log("finished");
+});

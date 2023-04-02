@@ -1,5 +1,5 @@
 export const getPrompt = (input: string): string => {
-  return `
+	return `
 # 役割
 あなたはプロのソフトウェアエンジニアです
 

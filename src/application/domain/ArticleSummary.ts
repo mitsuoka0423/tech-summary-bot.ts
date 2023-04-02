@@ -1,5 +1,5 @@
 export interface ArticleSummary {
-  title: string;
-  url: string;
-  summary: string;
+	title: string;
+	url: string;
+	summary: string;
 }

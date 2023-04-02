@@ -1,13 +1,13 @@
 import axios from "axios";
 
 export const notify = async ({
-  webhookUrl,
-  content,
+	webhookUrl,
+	content,
 }: {
-  webhookUrl: string;
-  content: string;
+	webhookUrl: string;
+	content: string;
 }) => {
-  await axios.post(webhookUrl, {
-    content,
-  });
+	await axios.post(webhookUrl, {
+		content,
+	});
 };
