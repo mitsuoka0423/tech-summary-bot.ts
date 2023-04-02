@@ -1,6 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ab75e1b3-6973-4f79-8ac6-9722e85a63a7/deploy-status)](https://app.netlify.com/sites/wondrous-cobbler-e90c6c/deploys)
-
-# netlify-functions-template.ts
+# tech-summary-bot.ts
 
 ## Install
 
@@ -8,28 +6,42 @@
 npm ci
 ```
 
-## Dev
+## Prepare
 
 ```bash
-npm run dev
+cp .env.sample .env
+```
+
+Update `.env` file.
+
+- `DISCORD_WEBHOOK_URL`
+  - https://support.discord.com/hc/ja/articles/228383668-%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB-Webhooks%E3%81%B8%E3%81%AE%E5%BA%8F%E7%AB%A0
+- `OPEN_AI_API_KEY`
+  - https://platform.openai.com/account/api-keys
+
+## Run
+
+### Local
+
+```bash
+npm run exec
+```
+
+### Build
+
+```bash
+npm run build
+node ./dist/index.js
+```
+
+## Lint/Format
+
+```bash
+npm run lint
 ```
 
 ```bash
-$ curl http://localhost:8888/netlify/functions/hello.
-
-{"message":"Hello World"}
-```
-
-## Deploy
-
-Just execute `git push`.
-
-## Execute
-
-```bash
-$ curl https://{site_name}.netlify.app/.netlify/functions/hello
-
-{"message":"Hello World"}
+npm run lint:fix
 ```
 
 ## Architecture
