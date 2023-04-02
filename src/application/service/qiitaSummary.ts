@@ -17,7 +17,7 @@ export const execute = async ({
 }: QiitaSummaryProps) => {
 	const channel = 'javascript';
 
-	const items = await getItems({ query: `${channel}+created:>2023-03-31`, per_page: 1, sort: 'like' });
+	const items = await getItems({ query: `${channel}+created:>2023-03-31`, per_page: 3, sort: 'like' });
 
 	const summaries: ArticleSummary[] = [];
 	for (const item of items) {
