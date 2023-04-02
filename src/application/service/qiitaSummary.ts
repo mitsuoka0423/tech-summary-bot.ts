@@ -1,15 +1,20 @@
-import { getPrompt, postChatCompletion } from "../adaptor/persistence-adaptor/chatgpt";
+import {
+  getPrompt,
+  postChatCompletion,
+} from "../adaptor/persistence-adaptor/chatgpt";
 import { notify } from "../adaptor/persistence-adaptor/discord";
 import { getItems } from "../adaptor/persistence-adaptor/qiita";
 import { ArticleSummary } from "../domain/ArticleSummary";
 
-import { config } from "dotenv";
-config();
+interface QiitaSummaryProps {
+  DISCORD_WEBHOOK_URL: string;
+  OPEN_AI_API_KEY: string;
+}
 
-const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || "";
-const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || "";
-
-export const execute = async () => {
+export const execute = async ({
+  DISCORD_WEBHOOK_URL,
+  OPEN_AI_API_KEY,
+}: QiitaSummaryProps) => {
   const items = await getItems({ query: "tag:javascript", per_page: 5 });
 
   const summaries: ArticleSummary[] = [];
@@ -19,12 +24,11 @@ export const execute = async () => {
     summaries.push({ title: item.title, url: item.url, summary });
   }
 
-  const messages: string[] = summaries
-    .map(
-      ({ title, url, summary }) =>
-        `---\n・タイトル：${title}\n・url：${url}\n---\n${summary}`
-    );
-  
+  const messages: string[] = summaries.map(
+    ({ title, url, summary }) =>
+      `---\n・タイトル：${title}\n・url：${url}\n---\n${summary}`
+  );
+
   for (const message of messages) {
     await notify({ webhookUrl: DISCORD_WEBHOOK_URL, content: message });
   }
