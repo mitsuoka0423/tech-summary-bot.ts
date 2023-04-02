@@ -4,7 +4,7 @@
   "description": "",
   "main": "./client/driver/index.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "esbuild ./src/client/github-actions/index.ts --bundle --outfile=dist/index.js --platform=node --target=node16",
     "dev": "netlify dev",
     "exec": "ts-node ./src/client/driver/index.ts",
     "lint": "rome check ./src",
@@ -28,6 +28,7 @@
     "openai": "^3.2.1"
   },
   "devDependencies": {
+    "esbuild": "^0.17.15",
     "netlify-cli": "^13.0.1",
     "rome": "12.0.0",
     "ts-node": "^10.9.1",
